@@ -7,8 +7,8 @@ app = Chalice(app_name='AWSlambda')
 
 # API_KEY1 = 'PKFU4FZT9Z8047JFEYZ0'
 # SECRET_KEY1 = 'vJ8pFUAvEl0kgnsuCSw8JMIWrofpiO12PJB4XkEN'
-# BASE_URL = "https://psotlpgw85.execute-api.us-east-2.amazonaws.com/api/"
-BASE_URL = "hhttp://127.0.0.1:8000"
+BASE_URL = "https://psotlpgw85.execute-api.us-east-2.amazonaws.com/api/"
+# BASE_URL = "hhttp://127.0.0.1:8000"
 # ORDERS_URL = "{}/v2/orders".format(BASE_URL)
 # HEADERS = {'APCA-API-KEY-ID': API_KEY1, 'APCA-API-SECRET-KEY': SECRET_KEY1}
 
@@ -28,20 +28,20 @@ def buy_stock():
 
     datas = {
         'open': webhook_message['open'],
-        'high': webhook_message['high'],
+        'high': webhook_message['high']*100,
         'low': webhook_message['low'],
         'close': webhook_message['close'],
         'ticker': webhook_message['ticker'],
         'ETH': {
-            'startShort': False,
-            'startLong': False,
-            'stopShort': False,
-            'stopLong': False,
-            'tp_percent': None,
-            'last_candle': 'null',
-            'sl_tries': 'null',
-            'isOn': False,
-            'LoseActive': 'null'
+            'startShort': webhook_message['ETH']['startShort'],
+            'startLong': webhook_message['ETH']['startLong'],
+            'stopShort': webhook_message['ETH']['stopShort'],
+            'stopLong': webhook_message['ETH']['stopLong'],
+            'tp_percent': webhook_message['ETH']['tp_percent'],
+            'last_candle': webhook_message['ETH']['last_candle'],
+            'sl_tries': webhook_message['ETH']['sl_tries'],
+            'isOn': webhook_message['ETH']['isOn'],
+            'LoseActive': webhook_message['ETH']['LoseActive'],
         }
     }
 
@@ -52,14 +52,14 @@ def buy_stock():
     # response = json.loads(r.content)
     #
 
-    with open('json.json', 'r', encoding='utf-8') as read_json:
-        text = json.load(read_json)
-        if(text != webhook_message):
-            with open('json.json', 'w', encoding='utf-8') as outfile:
-                json.dump(webhook_message, outfile)
-                print("add")
-        else:
-            print("pass")
+    # with open('json.json', 'r', encoding='utf-8') as read_json:
+    #     text = json.load(read_json)
+    #     if(text != webhook_message):
+    #         with open('json.json', 'w', encoding='utf-8') as outfile:
+    #             json.dump(webhook_message, outfile)
+    #             print("add")
+    #     else:
+    #         print("pass")
 
     return {
         'message': 'I bought the stock!',
