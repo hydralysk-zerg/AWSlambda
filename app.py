@@ -7,7 +7,7 @@ app = Chalice(app_name='AWSlambda')
 
 # API_KEY1 = 'PKFU4FZT9Z8047JFEYZ0'
 # SECRET_KEY1 = 'vJ8pFUAvEl0kgnsuCSw8JMIWrofpiO12PJB4XkEN'
-BASE_URL = "https://psotlpgw85.execute-api.us-east-2.amazonaws.com/api/"
+BASE_URL = "https://x41try8d6l.execute-api.us-east-2.amazonaws.com/api/"
 # BASE_URL = "hhttp://127.0.0.1:8000"
 # ORDERS_URL = "{}/v2/orders".format(BASE_URL)
 # HEADERS = {'APCA-API-KEY-ID': API_KEY1, 'APCA-API-SECRET-KEY': SECRET_KEY1}
